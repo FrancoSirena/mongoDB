@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import HomeStore from '../stores/HomeStore';
 import HomeActions from '../actions/HomeActions';
+import {first, without, findWhere} from 'underscore';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class Home extends React.Component {
     this.setState(state);
   }
   handleClick(char) {
-    var winner = char.charecterId;
+    var winner = char.characterId;
     var loser = first(without(this.state.characters, findWhere(this.state.characters, {characterId: winner}))).characterId;
     HomeActions.vote(winner, loser);
   }

@@ -130,7 +130,7 @@ var HomeActions = function () {
 
             $.ajax({
                 type: 'PUT',
-                url: '/api/chracters',
+                url: '/api/characters',
                 data: { winner: winner, loser: loser }
             }).done(function () {
                 _this2.actions.getTwoCharacters();
@@ -631,6 +631,8 @@ var _HomeActions = require('../actions/HomeActions');
 
 var _HomeActions2 = _interopRequireDefault(_HomeActions);
 
+var _underscore = require('underscore');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -671,8 +673,8 @@ var Home = function (_React$Component) {
   }, {
     key: 'handleClick',
     value: function handleClick(char) {
-      var winner = char.charecterId;
-      var loser = first(without(this.state.characters, findWhere(this.state.characters, { characterId: winner }))).characterId;
+      var winner = char.characterId;
+      var loser = (0, _underscore.first)((0, _underscore.without)(this.state.characters, (0, _underscore.findWhere)(this.state.characters, { characterId: winner }))).characterId;
       _HomeActions2.default.vote(winner, loser);
     }
   }, {
@@ -757,7 +759,7 @@ var Home = function (_React$Component) {
 
 exports.default = Home;
 
-},{"../actions/HomeActions":3,"../stores/HomeStore":15,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+},{"../actions/HomeActions":3,"../stores/HomeStore":15,"react":"react","react-router":"react-router","underscore":"underscore"}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
