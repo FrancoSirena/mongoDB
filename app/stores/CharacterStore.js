@@ -18,10 +18,10 @@ class CharacterStore {
 
     onGetCharacterSuccess(data) {
         assign(this, data);
-        $(document.body).attr('class', 'profile'+ this.race.toLowerCase());
+        $(document.body).attr('class', 'profile '+ this.race.toLowerCase());
         let localData = localStorage.getItem('NEF') ? JSON.parse(localStorage.getItem('NEF')) : {};
         let reports= localData.reports || [];
-        this.isReported = contais(reports , this.characterId);
+        this.isReported = contains(reports , this.characterId);
         this.winLossRatio = ((this.wins/(this.wins+this.losses) * 100) || 0 ).toFixed(1);
     }
     onGetCharacterFail(jqXhr) {

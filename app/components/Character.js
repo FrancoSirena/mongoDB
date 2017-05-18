@@ -12,7 +12,7 @@ export default class Character extends React.Component {
         CharacterStore.listen(this.onChange);
         CharacterActions.getCharacter(this.props.params.id);
 
-        $('.maginific-popup').maginificpopup({
+        $('.magnific-popup').magnificPopup({
             type: 'image',
             mainClass: 'mfp-zoom-in',
             closeOnContentClick: true,
