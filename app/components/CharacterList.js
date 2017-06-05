@@ -17,7 +17,7 @@ export default class CharacterList extends React.Component {
     componentWillUnmount() {
         CharacterListStore.unlisten(this.onChange);
     }
-    componentDidUpdate(prevoProps) {
+    componentDidUpdate(prevProps) {
         if (!isEqual(prevProps.params,this.props.params))
             CharacterListActions.getCharacters(this.props.params);
     }
@@ -53,7 +53,7 @@ export default class CharacterList extends React.Component {
             return (
             <div className='container'>
                 <div className='list-group'>
-                {charactersList}
+                {characterList}
                 </div>
             </div>
             );
