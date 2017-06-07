@@ -142,7 +142,7 @@ var CharacterListActions = function () {
             } else if (payload.category == 'male') {
                 params.gender = 'male';
             }
-            if (payload.category == 'shame') url = '/api/characters/shame';
+            if (payload.category == 'shame') url = '/api/shame';
 
             $.ajax({
                 url: url,
@@ -2079,7 +2079,7 @@ var Stats = function (_React$Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            _StatsStore2.default.unliste(this.onChange);
+            _StatsStore2.default.unlisten(this.onChange);
         }
     }, {
         key: 'onChange',
@@ -2350,7 +2350,6 @@ exports.default = _react2.default.createElement(
   _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/add', component: _AddCharacter2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/characters/:id', component: _Character2.default }),
-  _react2.default.createElement(_reactRouter.Route, { path: '/shame', component: _CharacterList2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/stats', component: _Stats2.default }),
   _react2.default.createElement(
     _reactRouter.Route,

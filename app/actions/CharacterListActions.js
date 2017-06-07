@@ -19,7 +19,7 @@ class CharacterListActions {
             params.gender = 'male';
         }
         if (payload.category == 'shame')
-            url = '/api/characters/shame';
+            url = '/api/shame';
 
         $.ajax({
             url: url,

@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var async = require('async');
 var request = require('request');
+var axios = require('axios');
 var xml2js = require('xml2js');
 
 var routes = require('./app/routes');
@@ -130,10 +131,10 @@ app.get('/api/stats', function(req, res, next) {
 });
 
 /**
- * GET /api/characters/shame
+ * GET /api/shame
  * Returns 100 lowest ranked characters.
  */
-app.get('/api/characters/shame', function(req, res, next) {
+app.get('/api/shame', function(req, res, next) {
   Character
     .find()
     .sort('-losses')
@@ -349,9 +350,8 @@ app.post('/api/characters', function(req, res, next) {
 
   async.waterfall([
     function(callback) {
-      request.get(characterIdLookupUrl, function(err, request, xml) {
-        if (err) return next(err);
-        parser.parseString(xml, function(err, parsedXml) {
+      axios.get(characterIdLookupUrl).then(function(json) {
+        parser.parseString(json.data, function(err, parsedXml) {
           if (err) return next(err);
           try {
             var characterId = parsedXml.eveapi.result[0].rowset[0].row[0].$.characterID;
@@ -374,9 +374,9 @@ app.post('/api/characters', function(req, res, next) {
     function(characterId) {
       var characterInfoUrl = 'https://api.eveonline.com/eve/CharacterInfo.xml.aspx?characterID=' + characterId;
 
-      request.get({ url: characterInfoUrl }, function(err, request, xml) {
-        if (err) return next(err);
-        parser.parseString(xml, function(err, parsedXml) {
+      axios.get(characterInfoUrl).then(function(json) {
+        console.log(json);
+        parser.parseString(json.data, function(err, parsedXml) {
           if (err) return res.send(err);
           try {
             var name = parsedXml.eveapi.result[0].characterName[0];

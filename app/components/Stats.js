@@ -13,7 +13,7 @@ export default class Stats extends React.Component {
         StatsActions.getStats();
     }
     componentWillUnmount () {
-        StatsStore.unliste(this.onChange);
+        StatsStore.unlisten(this.onChange);
     }
     onChange(state) {
         this.setState(state);
