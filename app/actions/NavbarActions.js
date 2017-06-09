@@ -8,8 +8,9 @@ class NavbarActions {
             'updateAjaxAnimation',
             'getCharacterCountSuccess',
             'getCharacterCountFail',
-            'findCharacterSucess',
-            'findCharacterFail'
+            'findCharacterSuccess',
+            'findCharacterFail',
+            'updateSearchQuery'
         );
     }
 
@@ -18,7 +19,7 @@ class NavbarActions {
             url: '/api/characters/search',
             data: {name: payload.searchQuery}
         })
-        .done((done) => {
+        .done((data) => {
             assign(payload, data);
             this.actions.findCharacterSuccess(payload);
         })

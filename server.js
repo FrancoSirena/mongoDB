@@ -14,6 +14,7 @@ var async = require('async');
 var request = require('request');
 var axios = require('axios');
 var xml2js = require('xml2js');
+var bluebird = require('bluebird');
 
 var routes = require('./app/routes');
 var Character = require('./models/character');
@@ -208,15 +209,12 @@ app.get('/api/characters/top', function(req, res, next) {
  * Search character
  */
 app.get('/api/characters/search', function(req, res, next){
-  var name = new RegExp(req.body.name, 'i');
-
-  Character.find({name: name}, function(err, char){
-    if (err) return next(err);
-
+  var name = req.query.name.toUpperCase();
+  Character.$where("this.name.toUpperCase().match(/"+name+"*/)").exec(function(err, char) {
     if (!char)
       res.send(404).send({message:'Character not found.'});
-
-    res.send(char);
+  
+    res.send(char[0]);
   })
 })
 
@@ -375,7 +373,6 @@ app.post('/api/characters', function(req, res, next) {
       var characterInfoUrl = 'https://api.eveonline.com/eve/CharacterInfo.xml.aspx?characterID=' + characterId;
 
       axios.get(characterInfoUrl).then(function(json) {
-        console.log(json);
         parser.parseString(json.data, function(err, parsedXml) {
           if (err) return res.send(err);
           try {
@@ -440,6 +437,7 @@ app.use(function(req, res) {
   });
 });
 
+mongoose.Promise = require('bluebird');
 mongoose.connect(config.database);
 mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');

@@ -4449,8 +4449,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #fff;
-  border-color: #eeeeee;
+  background-color: #8590ad;
+  border-color: #010b26;
+
 }
 .navbar-default .navbar-brand {
   color: #353f44;
@@ -4464,7 +4465,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #353f44;
+  color: #e8e9ed;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -7367,13 +7368,14 @@ footer .thumb-md:hover {
 }
 .profile .form-control {
   color: #fff;
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(2  55, 255, 255, 0.15);
   border-right: 0;
+  background-color: transparent;
 }
 .profile .form-control:focus {
   border-color: rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.055), 0 0 8px rgba(255, 255, 255, 0.3);
+  
 }
 .profile .input-group-btn:last-child > .btn {
   margin-left: 0;
@@ -7486,6 +7488,7 @@ footer .thumb-md:hover {
 }
 .btn-default {
   box-shadow: 0 1px 1px rgba(91, 91, 91, 0.1);
+  border-radius: 10px;
 }
 .navbar {
   border: 0;
@@ -7542,7 +7545,9 @@ footer .thumb-md:hover {
 }
 .form-control {
   border-color: #cfdadc;
-  border-radius: 2px;
+  border-radius: 10px;
+  background-color: #c1cbf2;
+  color: #07080a;
 }
 .form-control:focus {
   border-color: #24b7e4;

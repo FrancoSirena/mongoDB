@@ -284,7 +284,7 @@ var NavbarActions = function () {
     function NavbarActions() {
         _classCallCheck(this, NavbarActions);
 
-        this.generateActions('updateOnlineUsers', 'updateAjaxAnimation', 'getCharacterCountSuccess', 'getCharacterCountFail', 'findCharacterSucess', 'findCharacterFail');
+        this.generateActions('updateOnlineUsers', 'updateAjaxAnimation', 'getCharacterCountSuccess', 'getCharacterCountFail', 'findCharacterSuccess', 'findCharacterFail', 'updateSearchQuery');
     }
 
     _createClass(NavbarActions, [{
@@ -295,7 +295,7 @@ var NavbarActions = function () {
             $.ajax({
                 url: '/api/characters/search',
                 data: { name: payload.searchQuery }
-            }).done(function (done) {
+            }).done(function (data) {
                 (0, _underscore.assign)(payload, data);
                 _this.actions.findCharacterSuccess(payload);
             }).fail(function () {
@@ -1416,7 +1416,7 @@ var Navbar = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'input-group' },
-                            _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: this.state.totalCharacters + ' characters', value: this.state.searchQuery, onChange: _NavbarActions2.default.updateSearchQuery }),
+                            _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: this.state.totalCharacters + ' characters', defaultValue: this.state.searchQuery, onChange: _NavbarActions2.default.updateSearchQuery }),
                             _react2.default.createElement(
                                 'span',
                                 { className: 'input-group-btn' },
